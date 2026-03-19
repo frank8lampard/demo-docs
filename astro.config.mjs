@@ -3,14 +3,26 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
+	site: 'https://frank8lampard.github.io',
+    base: '/demo-docs',
     integrations: [
         starlight({
 			defaultLocale: 'ru',
             title: 'GMONIT База знаний',
-            title: 'GMONIT База знаний',
 			logo: {
 					src: './src/assets/logo.svg',
 				},
+			favicon: '/favicon.svg',
+			head: [
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'icon',
+						href: '/favicon.svg',
+						type: 'image/svg+xml',
+					},
+				},
+			],
             customCss: [
                 './src/styles/custom.css',
             ],
