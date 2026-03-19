@@ -1,0 +1,15 @@
+:root {
+    --sl-color-accent-low: #001c47;
+    --sl-color-accent: #185fa5;
+    --sl-color-accent-high: #378ADD;
+}
+
+:root[data-theme='light'] {
+    --sl-color-text-accent: #185fa5;
+    --sl-nav-pad-y: 1rem;
+}
+
+.site-title {
+    color: #185fa5 !important;
+    font-weight: 700 !important;
+}
