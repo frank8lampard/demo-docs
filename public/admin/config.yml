@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: frank8lampard/demo-docs
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: guides
+    label: Начало работы
+    folder: src/content/docs/guides
+    create: true
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: description, label: Описание, widget: string, required: false }
+      - { name: body, label: Содержимое, widget: markdown }
+
+  - name: products
+    label: Продукты
+    folder: src/content/docs/products
+    create: true
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: description, label: Описание, widget: string, required: false }
+      - { name: body, label: Содержимое, widget: markdown }
+
+  - name: faq
+    label: FAQ
+    folder: src/content/docs/faq
+    create: true
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: description, label: Описание, widget: string, required: false }
+      - { name: body, label: Содержимое, widget: markdown }
