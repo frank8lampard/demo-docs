@@ -2,6 +2,7 @@ backend:
   name: github
   repo: frank8lampard/demo-docs
   branch: main
+  auth_type: pkce
 
 media_folder: public/images
 public_folder: /images
