@@ -73,3 +73,14 @@ site-search button {
         max-width: 100% !important;
     }
 }
+
+.sl-container h1#_top {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #888 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
