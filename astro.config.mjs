@@ -32,9 +32,7 @@ export default defineConfig({
             sidebar: [
                 {
                     label: 'Начало работы',
-                    items: [
-                        { label: 'Быстрый старт', slug: 'guides/quickstart' },
-                    ],
+                    autogenerate: { directory: 'guides' },
                 },
                 {
                     label: 'Продукты',
