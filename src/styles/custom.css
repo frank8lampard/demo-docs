@@ -4,6 +4,7 @@
     --sl-color-accent-high: #378ADD;
 }
 
+/* Шапка */
 :root[data-theme='light'] .header,
 :root[data-theme='dark'] .header {
     background-color: #001c47;
@@ -17,14 +18,53 @@ starlight-theme-select {
     display: none;
 }
 
-/* Растянуть поиск — десктоп и мобила */
+/* Слово Документация */
+.site-title {
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    opacity: 0.75;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Поиск */
+.sl-flex.print\:hidden {
+    flex: 1 !important;
+}
+
 site-search {
     flex: 1 !important;
-    max-width: 600px !important;
+    width: 100% !important;
 }
 
 site-search button {
     width: 100% !important;
+    max-width: 500px !important;
+}
+
+/* Заголовок страницы — мелкий как хлебные крошки */
+.sl-markdown-content > h1:first-child {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #888 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* H2 */
+.sl-markdown-content h2 {
+    color: #001c47;
+    font-size: 1.5rem;
+}
+
+/* Активный пункт меню */
+.sidebar a[aria-current='page'] {
+    background-color: #E6F1FB;
+    border-left: 3px solid #378ADD;
+    color: #185fa5;
 }
 
 /* Мобильная версия */
@@ -32,34 +72,4 @@ site-search button {
     site-search {
         max-width: 100% !important;
     }
-}
-
-/* Заголовок страницы — меньше как хлебные крошки */
-.sl-markdown-content h1 {
-    font-size: 1.2rem !important;
-    font-weight: 500 !important;
-    color: #185fa5;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.sl-markdown-content h2 {
-    color: #001c47;
-    font-size: 1.5rem;
-}
-
-.sidebar a[aria-current='page'] {
-    background-color: #E6F1FB;
-    border-left: 3px solid #378ADD;
-    color: #185fa5;
-}
-
-/* Стиль слова Документация */
-.site-title {
-    font-size: 0.8rem !important;
-    font-weight: 400 !important;
-    opacity: 0.75;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
 }
