@@ -17,11 +17,10 @@ export default defineConfig({
 			components: {
 				ThemeSelect: './src/components/EmptyThemeSelect.astro',
 			},
-            title: 'GMONIT База знаний',
+            title: 'База знаний',
 			logo: {
 				src: './src/assets/colorGMONIT_logo_whi.svg',
-				href: 'https://gmonit.ru',
-				replacesTitle: true,
+				replacesTitle: false,
 			},
 			favicon: '/favicon.svg',
 			head: [
