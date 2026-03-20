@@ -42,39 +42,13 @@ site-search button {
     max-width: 500px !important;
 }
 
-/* Заголовок страницы — мелкий как хлебные крошки */
-.sl-markdown-content > h1:first-child {
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    color: #888 !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 1.5rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-}
-
-/* H2 */
-.sl-markdown-content h2 {
-    color: #001c47;
-    font-size: 1.5rem;
-}
-
-/* Активный пункт меню */
-.sidebar a[aria-current='page'] {
-    background-color: #E6F1FB;
-    border-left: 3px solid #378ADD;
-    color: #185fa5;
-}
-
-/* Мобильная версия */
 @media (max-width: 768px) {
     site-search {
         max-width: 100% !important;
     }
 }
 
-/* Убираем h1 — заменяем на breadcrumb стиль */
+/* Хлебные крошки — заголовок страницы */
 .sl-container h1#_top {
     font-size: 0.8rem !important;
     font-weight: 400 !important;
@@ -86,38 +60,22 @@ site-search button {
     letter-spacing: normal !important;
 }
 
-/* Добавим стрелку перед заголовком как breadcrumb */
 .sl-container h1#_top::before {
     content: 'Документация / ';
     color: #ccc;
     font-size: 0.8rem;
 }
 
-/* Убрать лишний отступ сверху */
-.content-panel {
-    padding-top: 1rem !important;
-}
-
-/* H2 — основной заголовок секции */
+/* H2 */
 .sl-markdown-content h2 {
     color: #001c47;
     font-size: 1.5rem;
     margin-top: 1.5rem;
 }
 
-/* Главная страница — убрать ограничение ширины */
-[data-page-title="Добро пожаловать"] .content-panel,
-[data-page-title="Добро пожаловать"] .sl-container {
-    max-width: 100% !important;
-    padding: 0 !important;
-}
-
-/* Убрать breadcrumb на главной */
-[data-page-title="Добро пожаловать"] .sl-container h1#_top {
-    display: none !important;
-}
-
-/* Убрать отступ сверху */
-[data-page-title="Добро пожаловать"] .content-panel {
-    padding-top: 0 !important;
+/* Активный пункт меню */
+.sidebar a[aria-current='page'] {
+    background-color: #E6F1FB;
+    border-left: 3px solid #378ADD;
+    color: #185fa5;
 }
