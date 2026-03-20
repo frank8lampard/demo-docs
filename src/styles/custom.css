@@ -18,10 +18,10 @@ starlight-theme-select {
 }
 
 /* Растянуть поиск */
-.header search-dialog,
-.header site-search {
-    flex: 1;
-    max-width: 500px;
+.header search-dialog button,
+site-search {
+    width: 300px !important;
+    max-width: 400px;
 }
 
 .sl-markdown-content h1 {

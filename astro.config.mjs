@@ -17,7 +17,7 @@ export default defineConfig({
 			components: {
 				ThemeSelect: './src/components/EmptyThemeSelect.astro',
 			},
-            title: 'База знаний',
+            title: 'Документация',
 			logo: {
 				src: './src/assets/colorGMONIT_logo_whi.svg',
 				replacesTitle: false,
