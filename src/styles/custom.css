@@ -74,13 +74,33 @@ site-search button {
     }
 }
 
+/* Убираем h1 — заменяем на breadcrumb стиль */
 .sl-container h1#_top {
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    color: #888 !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 1.5rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    color: #aaa !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0 0.25rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Добавим стрелку перед заголовком как breadcrumb */
+.sl-container h1#_top::before {
+    content: 'Документация / ';
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+/* Убрать лишний отступ сверху */
+.content-panel {
+    padding-top: 1rem !important;
+}
+
+/* H2 — основной заголовок секции */
+.sl-markdown-content h2 {
+    color: #001c47;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
 }
