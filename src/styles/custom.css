@@ -2,50 +2,34 @@
     --sl-color-accent-low: #001c47;
     --sl-color-accent: #185fa5;
     --sl-color-accent-high: #378ADD;
-    --sl-font: 'Inter', system-ui, sans-serif;
 }
 
 /* Шапка тёмная */
-header.header {
-    background-color: #001c47 !important;
+:root[data-theme='light'] .header {
+    background-color: #001c47;
     border-bottom: 2px solid #185fa5;
 }
 
-/* Логотип и название белые */
-.site-title {
+:root[data-theme='dark'] .header {
+    background-color: #001c47;
+    border-bottom: 2px solid #185fa5;
+}
+
+/* Текст в шапке белый */
+.header .site-title {
+    color: #ffffff;
+}
+
+.header a {
     color: #ffffff !important;
 }
 
-/* Иконки в шапке белые */
-header .social-icons a,
-header nav a {
-    color: #ffffff !important;
+/* Убрать переключатель темы */
+starlight-theme-select {
+    display: none;
 }
 
-/* Поиск — растянуть */
-site-search {
-    flex: 1;
-    max-width: 600px;
-}
-
-/* Сайдбар — светлый фон, тёмный текст */
-.sidebar {
-    background-color: #f8f9fc !important;
-}
-
-nav.sidebar-content a {
-    color: #001c47 !important;
-}
-
-/* Активный пункт */
-[aria-current="page"] {
-    background-color: #E6F1FB !important;
-    border-left: 3px solid #378ADD;
-    color: #185fa5 !important;
-    font-weight: 500;
-}
-
-/* Заголовки */
+/* Заголовки статей */
 .sl-markdown-content h1 {
     color: #001c47;
     border-bottom: 2px solid #378ADD;
@@ -56,6 +40,9 @@ nav.sidebar-content a {
     color: #185fa5;
 }
 
-/* Убрать переключатель темы */
-starlight-theme-select {
-    display: none
+/* Активный пункт меню */
+.sidebar a[aria-current='page'] {
+    background-color: #E6F1FB;
+    border-left: 3px solid #378ADD;
+    color: #185fa5;
+}
