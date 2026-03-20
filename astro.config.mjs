@@ -49,8 +49,8 @@ export default defineConfig({
 					items: [
 						{ label: 'APM', autogenerate: { directory: 'agents/apm' } },
 						{ label: 'Инфраструктура', autogenerate: { directory: 'agents/infra' } },
-						{ label: 'Браузерный мониторинг', slug: 'agents/rum' },
-						{ label: 'Мобильный мониторинг', slug: 'agents/mobile' },
+						{ label: 'Браузерный мониторинг', autogenerate: { directory: 'agents/rum' } },
+						{ label: 'Мобильный мониторинг', autogenerate: { directory: 'agents/mobile' } },
 					],
 				},
 				{
