@@ -66,11 +66,6 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 			],
-			customTranslations: {
-				ru: {
-					'search.label': 'Поиск',
-				},
-			},
 			pagination: false,
         }),
     ],
