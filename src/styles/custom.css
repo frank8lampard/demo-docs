@@ -4,35 +4,28 @@
     --sl-color-accent-high: #378ADD;
 }
 
-/* Шапка тёмная */
-:root[data-theme='light'] .header {
-    background-color: #001c47;
-    border-bottom: 2px solid #185fa5;
-}
-
+:root[data-theme='light'] .header,
 :root[data-theme='dark'] .header {
     background-color: #001c47;
-    border-bottom: 2px solid #185fa5;
-}
-
-/* Текст в шапке белый */
-.header .site-title {
-    color: #ffffff;
 }
 
 .header a {
     color: #ffffff !important;
 }
 
-/* Убрать переключатель темы */
 starlight-theme-select {
     display: none;
 }
 
-/* Заголовки статей */
+/* Растянуть поиск */
+.header search-dialog,
+.header site-search {
+    flex: 1;
+    max-width: 500px;
+}
+
 .sl-markdown-content h1 {
     color: #001c47;
-    border-bottom: 2px solid #378ADD;
     padding-bottom: 0.5rem;
 }
 
@@ -40,7 +33,6 @@ starlight-theme-select {
     color: #185fa5;
 }
 
-/* Активный пункт меню */
 .sidebar a[aria-current='page'] {
     background-color: #E6F1FB;
     border-left: 3px solid #378ADD;
