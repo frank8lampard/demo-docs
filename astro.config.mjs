@@ -19,8 +19,10 @@ export default defineConfig({
 			},
             title: 'GMONIT База знаний',
 			logo: {
-					src: './src/assets/logo.svg',
-				},
+				src: './src/assets/colorGMONIT_logo_bla.svg',
+				href: 'https://gmonit.ru',
+				replacesTitle: true,
+			},
 			favicon: '/favicon.svg',
 			head: [
 				{
