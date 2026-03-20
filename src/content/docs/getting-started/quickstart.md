@@ -1,5 +1,7 @@
 ---
 title: Быстрый старт
+sidebar:
+  label: 🚀 Быстрый старт
 description: Начните работу с GMONIT за 15 минут
 ---
 

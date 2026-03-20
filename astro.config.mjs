@@ -44,32 +44,27 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Начало работы',
-					icon: 'rocket',
 					autogenerate: { directory: 'getting-started' },
 				},
 				{
 					label: 'Установка агентов',
-					icon: 'download',
 					items: [
-						{ label: 'APM', icon: 'cpu', autogenerate: { directory: 'agents/apm' } },
-						{ label: 'Инфраструктура', icon: 'server', autogenerate: { directory: 'agents/infra' } },
-						{ label: 'Браузерный мониторинг', icon: 'laptop', autogenerate: { directory: 'agents/rum' } },
-						{ label: 'Мобильный мониторинг', icon: 'smartphone', autogenerate: { directory: 'agents/mobile' } },
+						{ label: 'APM', autogenerate: { directory: 'agents/apm' } },
+						{ label: 'Инфраструктура', autogenerate: { directory: 'agents/infra' } },
+						{ label: 'Браузерный мониторинг', autogenerate: { directory: 'agents/rum' } },
+						{ label: 'Мобильный мониторинг', autogenerate: { directory: 'agents/mobile' } },
 					],
 				},
 				{
 					label: 'Модули',
-					icon: 'puzzle',
 					autogenerate: { directory: 'modules' },
 				},
 				{
 					label: 'Сценарии использования',
-					icon: 'map',
 					autogenerate: { directory: 'use-cases' },
 				},
 				{
 					label: 'Справочник',
-					icon: 'open-book',
 					autogenerate: { directory: 'reference' },
 				},
 			],
