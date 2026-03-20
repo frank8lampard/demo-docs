@@ -1,12 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightOrama from '@orama/plugin-starlight';
 
 export default defineConfig({
 	site: 'https://frank8lampard.github.io',
     base: '/demo-docs',
     integrations: [
         starlight({
+			plugins: [starlightOrama()],
 			defaultLocale: 'ru',
 			locales: {
 				root: {
@@ -43,7 +45,8 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Начало работы',
-					autogenerate: { directory: 'getting-started' },
+					collapsed: false,
+					autogenerate: { directory: 'getting-started', collapsed: false },
 				},
 				{
 					label: 'Установка агентов',
@@ -68,6 +71,9 @@ export default defineConfig({
 				},
 			],
 			pagination: false,
+			components: {
+    				Header: './src/components/Header.astro',
+},
         }),
     ],
 });
