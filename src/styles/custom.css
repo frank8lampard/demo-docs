@@ -104,3 +104,20 @@ site-search button {
     font-size: 1.5rem;
     margin-top: 1.5rem;
 }
+
+/* Главная страница — убрать ограничение ширины */
+[data-page-title="Добро пожаловать"] .content-panel,
+[data-page-title="Добро пожаловать"] .sl-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Убрать breadcrumb на главной */
+[data-page-title="Добро пожаловать"] .sl-container h1#_top {
+    display: none !important;
+}
+
+/* Убрать отступ сверху */
+[data-page-title="Добро пожаловать"] .content-panel {
+    padding-top: 0 !important;
+}
