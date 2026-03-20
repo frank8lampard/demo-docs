@@ -1,14 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightOrama from '@orama/plugin-starlight';
 
 export default defineConfig({
 	site: 'https://frank8lampard.github.io',
     base: '/demo-docs',
     integrations: [
         starlight({
-			plugins: [starlightOrama()],
 			defaultLocale: 'ru',
 			locales: {
 				root: {

@@ -1,0 +1,308 @@
+---
+---
+
+<section class="gm-hero">
+  <div class="gm-hero__bg">
+    <div class="gm-blob gm-blob--1"></div>
+    <div class="gm-blob gm-blob--2"></div>
+    <div class="gm-grid"></div>
+  </div>
+
+  <div class="gm-hero__content">
+    <div class="gm-badge">Observability платформа</div>
+    <h1 class="gm-hero__title">
+      Видите всё.<br/>
+      <span class="gm-gradient">Реагируете первыми.</span>
+    </h1>
+    <p class="gm-hero__sub">
+      GMONIT — единая платформа мониторинга приложений, инфраструктуры и бизнес-процессов с AI-детекцией аномалий.
+    </p>
+    <div class="gm-hero__actions">
+      <a href="/demo-docs/getting-started/quickstart" class="gm-btn gm-btn--primary">
+        Начать работу →
+      </a>
+      <a href="https://gmonit.ru" target="_blank" class="gm-btn gm-btn--outline">
+        О продукте ↗
+      </a>
+    </div>
+
+    <div class="gm-stats">
+      <div class="gm-stat">
+        <span class="gm-stat__num">15+</span>
+        <span class="gm-stat__label">технологий мониторинга</span>
+      </div>
+      <div class="gm-stat__divider"></div>
+      <div class="gm-stat">
+        <span class="gm-stat__num">&lt;1 мин</span>
+        <span class="gm-stat__label">до первых данных</span>
+      </div>
+      <div class="gm-stat__divider"></div>
+      <div class="gm-stat">
+        <span class="gm-stat__num">AI</span>
+        <span class="gm-stat__label">детекция аномалий</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gm-cards">
+    <a href="/demo-docs/agents/apm" class="gm-card">
+      <div class="gm-card__icon">⚡</div>
+      <h3>APM</h3>
+      <p>Мониторинг производительности приложений. Java, Python, Node.js, Go и другие.</p>
+      <span class="gm-card__link">Подробнее →</span>
+    </a>
+    <a href="/demo-docs/agents/infra" class="gm-card">
+      <div class="gm-card__icon">🖥️</div>
+      <h3>Инфраструктура</h3>
+      <p>Серверы, базы данных, очереди сообщений — всё в одном месте.</p>
+      <span class="gm-card__link">Подробнее →</span>
+    </a>
+    <a href="/demo-docs/agents/rum" class="gm-card">
+      <div class="gm-card__icon">🌐</div>
+      <h3>Браузер и мобайл</h3>
+      <p>Real User Monitoring — видите опыт каждого пользователя в реальном времени.</p>
+      <span class="gm-card__link">Подробнее →</span>
+    </a>
+    <a href="/demo-docs/use-cases" class="gm-card">
+      <div class="gm-card__icon">🤖</div>
+      <h3>AI аномалии</h3>
+      <p>Предиктивное выявление проблем до того как они влияют на бизнес.</p>
+      <span class="gm-card__link">Подробнее →</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .gm-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: -2rem -1rem 0;
+  }
+
+  .gm-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .gm-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+  }
+
+  .gm-blob--1 {
+    width: 600px;
+    height: 600px;
+    background: #185fa5;
+    top: -200px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .gm-blob--2 {
+    width: 400px;
+    height: 400px;
+    background: #378ADD;
+    bottom: 0;
+    left: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  .gm-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(24, 95, 165, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(24, 95, 165, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .gm-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem 3rem;
+    max-width: 700px;
+  }
+
+  .gm-badge {
+    display: inline-block;
+    background: rgba(55, 138, 221, 0.15);
+    border: 1px solid rgba(55, 138, 221, 0.3);
+    color: #378ADD;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .gm-hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    color: var(--sl-color-text) !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .gm-gradient {
+    background: linear-gradient(135deg, #378ADD, #185fa5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gm-hero__sub {
+    font-size: 1.1rem;
+    color: var(--sl-color-text-accent);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 560px;
+    opacity: 0.85;
+  }
+
+  .gm-hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .gm-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .gm-btn--primary {
+    background: #185fa5;
+    color: #ffffff !important;
+  }
+
+  .gm-btn--primary:hover {
+    background: #378ADD;
+    transform: translateY(-1px);
+  }
+
+  .gm-btn--outline {
+    border: 1px solid rgba(55, 138, 221, 0.4);
+    color: #378ADD !important;
+  }
+
+  .gm-btn--outline:hover {
+    border-color: #378ADD;
+    background: rgba(55, 138, 221, 0.05);
+  }
+
+  .gm-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .gm-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .gm-stat__num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #185fa5;
+  }
+
+  .gm-stat__label {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .gm-stat__divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(55, 138, 221, 0.2);
+  }
+
+  .gm-cards {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(55, 138, 221, 0.1);
+    border-top: 1px solid rgba(55, 138, 221, 0.1);
+  }
+
+  .gm-card {
+    background: var(--sl-color-bg);
+    padding: 2rem 1.75rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gm-card:hover {
+    background: rgba(55, 138, 221, 0.04);
+  }
+
+  .gm-card__icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .gm-card h3 {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--sl-color-text) !important;
+    margin: 0 !important;
+  }
+
+  .gm-card p {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .gm-card__link {
+    font-size: 0.8rem;
+    color: #378ADD;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @media (max-width: 768px) {
+    .gm-hero__content {
+      padding: 2.5rem 1.25rem 2rem;
+    }
+    .gm-stat__divider { display: none; }
+    .gm-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gm-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
