@@ -1,0 +1,13 @@
+---
+import Default from '@astrojs/starlight/components/Header.astro';
+---
+<Default {...Astro.props}>
+  <slot />
+</Default>
+
+<script>
+  document.querySelector('.site-title')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'https://gmonit.ru';
+  });
+</script>

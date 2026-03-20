@@ -3,8 +3,6 @@ backend:
   repo: frank8lampard/demo-docs
   branch: main
 
-local_backend: true
-
 media_folder: public/images
 public_folder: /images
 
@@ -39,6 +37,26 @@ collections:
       - { name: description, label: Описание, widget: string, required: false }
       - { name: body, label: Содержимое, widget: markdown }
 
+  - name: agents-rum
+    label: Браузерный мониторинг
+    folder: src/content/docs/agents/rum
+    create: true
+    extension: md
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: description, label: Описание, widget: string, required: false }
+      - { name: body, label: Содержимое, widget: markdown }
+
+  - name: agents-mobile
+    label: Мобильный мониторинг
+    folder: src/content/docs/agents/mobile
+    create: true
+    extension: md
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: description, label: Описание, widget: string, required: false }
+      - { name: body, label: Содержимое, widget: markdown }
+
   - name: modules
     label: Модули
     folder: src/content/docs/modules
@@ -56,7 +74,7 @@ collections:
     extension: md
     fields:
       - { name: title, label: Заголовок, widget: string }
-      - { name: description, label: Описание, widget: string, required: false }
+      - { name: description, label:Описание, widget: string, required: false }
       - { name: body, label: Содержимое, widget: markdown }
 
   - name: reference
