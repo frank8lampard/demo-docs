@@ -14,9 +14,6 @@ export default defineConfig({
 					lang: 'ru',
 				},
 			},
-			components: {
-				ThemeSelect: './src/components/EmptyThemeSelect.astro',
-			},
             title: 'Документация',
 			logo: {
 				src: './src/assets/colorGMONIT_logo_whi.svg',
@@ -70,8 +67,9 @@ export default defineConfig({
 			],
 			pagination: false,
 			components: {
-    				Header: './src/components/Header.astro',
-},
+				ThemeSelect: './src/components/EmptyThemeSelect.astro',
+				Header: './src/components/Header.astro',
+			},
         }),
     ],
 });
