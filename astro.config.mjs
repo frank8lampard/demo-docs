@@ -8,6 +8,15 @@ export default defineConfig({
     integrations: [
         starlight({
 			defaultLocale: 'ru',
+			locales: {
+				root: {
+					label: 'Русский',
+					lang: 'ru',
+				},
+			},
+			components: {
+				ThemeSelect: './src/components/EmptyThemeSelect.astro',
+			},
             title: 'GMONIT База знаний',
 			logo: {
 					src: './src/assets/logo.svg',
@@ -27,27 +36,42 @@ export default defineConfig({
                 './src/styles/custom.css',
             ],
             social: [
-                { icon: 'telegram', label: 'Telegram', href: 'https://t.me/gmonit_sales_bot' },
-            ],
-            sidebar: [
-                {
-                    label: 'Начало работы',
-                    autogenerate: { directory: 'guides' },
-                },
-                {
-                    label: 'Продукты',
-                    autogenerate: { directory: 'products' },
-                },
-                {
-                    label: 'Интеграции',
-                    autogenerate: { directory: 'integrations' },
-                },
-                {
-                    label: 'FAQ',
-                    autogenerate: { directory: 'faq' },
-                },
-            ],
-			lastUpdated: true,
+				{ icon: 'telegram', label: 'Telegram', href: 'https://t.me/gmonit_sales_bot' },
+				{ icon: 'email', label: 'support@gmonit.ru', href: 'mailto:support@gmonit.ru' },
+			],
+			sidebar: [
+				{
+					label: 'Начало работы',
+					autogenerate: { directory: 'getting-started' },
+				},
+				{
+					label: 'Установка агентов',
+					items: [
+						{ label: 'APM', autogenerate: { directory: 'agents/apm' } },
+						{ label: 'Инфраструктура', autogenerate: { directory: 'agents/infra' } },
+						{ label: 'Браузерный мониторинг', slug: 'agents/rum' },
+						{ label: 'Мобильный мониторинг', slug: 'agents/mobile' },
+					],
+				},
+				{
+					label: 'Модули',
+					autogenerate: { directory: 'modules' },
+				},
+				{
+					label: 'Сценарии использования',
+					autogenerate: { directory: 'use-cases' },
+				},
+				{
+					label: 'Справочник',
+					autogenerate: { directory: 'reference' },
+				},
+			],
+			customTranslations: {
+				ru: {
+					'search.label': 'Поиск',
+				},
+			},
+			pagination: false,
         }),
     ],
 });

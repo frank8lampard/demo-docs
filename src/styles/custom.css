@@ -1,31 +1,51 @@
-/* Цвет акцента под GMONIT */
 :root {
     --sl-color-accent-low: #001c47;
     --sl-color-accent: #185fa5;
     --sl-color-accent-high: #378ADD;
-    --sl-color-white: #ffffff;
     --sl-font: 'Inter', system-ui, sans-serif;
 }
 
-/* Шапка — тёмный фон как на gmonit.ru */
+/* Шапка тёмная */
 header.header {
     background-color: #001c47 !important;
-    border-bottom: 1px solid #185fa5;
+    border-bottom: 2px solid #185fa5;
 }
 
-/* Логотип и название в шапке белые */
+/* Логотип и название белые */
 .site-title {
     color: #ffffff !important;
 }
 
-/* Активный пункт меню */
+/* Иконки в шапке белые */
+header .social-icons a,
+header nav a {
+    color: #ffffff !important;
+}
+
+/* Поиск — растянуть */
+site-search {
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Сайдбар — светлый фон, тёмный текст */
+.sidebar {
+    background-color: #f8f9fc !important;
+}
+
+nav.sidebar-content a {
+    color: #001c47 !important;
+}
+
+/* Активный пункт */
 [aria-current="page"] {
     background-color: #E6F1FB !important;
     border-left: 3px solid #378ADD;
     color: #185fa5 !important;
+    font-weight: 500;
 }
 
-/* Заголовки статей */
+/* Заголовки */
 .sl-markdown-content h1 {
     color: #001c47;
     border-bottom: 2px solid #378ADD;
@@ -36,7 +56,6 @@ header.header {
     color: #185fa5;
 }
 
-/* Красивые блоки tip/note/warning */
-.sl-markdown-content .starlight-aside {
-    border-radius: 8px;
-}
+/* Убрать переключатель темы */
+starlight-theme-select {
+    display: none
