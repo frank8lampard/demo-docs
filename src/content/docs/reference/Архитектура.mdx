@@ -1,0 +1,254 @@
+---
+title: Архитектура решения
+sidebar:
+  label: Архитектура решения
+  order: 0
+tableOfContents: false
+---
+
+<div style="padding: 0.5rem 0 2rem; font-family: var(--sl-font);">
+
+{/* Заголовок */}
+<div style="margin-bottom: 2rem;">
+  <div style="font-size: 12px; font-weight: 500; color: var(--sl-color-text-accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem;">Справочник</div>
+  <div style="font-size: 28px; font-weight: 600; color: var(--sl-color-white); line-height: 1.25; margin-bottom: .75rem;">Архитектура решения GMONIT</div>
+  <div style="font-size: 15px; color: var(--sl-color-gray-2); line-height: 1.6; max-width: 560px;">Из чего состоит платформа, как данные движутся от агентов до интерфейса и какие порты используются.</div>
+</div>
+
+{/* Схема потока */}
+<div style="font-size: 12px; font-weight: 500; color: var(--sl-color-gray-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1rem;">Поток данных</div>
+
+<div style="display:flex;align-items:flex-start;width:100%;gap:0;margin-bottom:2.5rem;">
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#FAEEDA;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="4.5" cy="9" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><circle cx="13.5" cy="4.5" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><circle cx="13.5" cy="13.5" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><path d="M7 8l4.5-2.5M7 10l4.5 2.5" stroke="#854F0B" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">Агенты</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">APM · Infra · RUM<br/>Mobile · Browser</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#FAEEDA;color:#854F0B;border:1px solid #FAC775">HTTPS 443</span>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;width:24px;display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:2px">
+    <span style="font-size:9px;color:var(--sl-color-gray-3);white-space:nowrap;opacity:.7">метрики</span>
+    <div style="display:flex;align-items:center;width:100%"><div style="flex:1;height:1px;background:var(--sl-color-hairline)"></div><span style="font-size:12px;color:var(--sl-color-gray-3)">›</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="8" rx="2.5" stroke="#3B6D11" stroke-width="1.3" fill="none"/><circle cx="5.5" cy="9" r="1" fill="#3B6D11"/><path d="M8 9h5.5" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">NGINX</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">SSL termination<br/>балансировка</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#EAF3DE;color:#3B6D11;border:1px solid #C0DD97">443 TCP</span>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;width:24px;display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:2px">
+    <span style="font-size:9px;color:var(--sl-color-gray-3);white-space:nowrap;opacity:.7">проксирование</span>
+    <div style="display:flex;align-items:center;width:100%"><div style="flex:1;height:1px;background:var(--sl-color-hairline)"></div><span style="font-size:12px;color:var(--sl-color-gray-3)">›</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#3B6D11" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="6" stroke="#3B6D11" stroke-width="1.3" fill="none"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">Collector</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">N инстансов<br/>парсинг · обогащение</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#EAF3DE;color:#3B6D11;border:1px solid #C0DD97">Redis 6379</span>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;width:24px;display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:2px">
+    <span style="font-size:9px;color:var(--sl-color-gray-3);white-space:nowrap;opacity:.7">запись</span>
+    <div style="display:flex;align-items:center;width:100%"><div style="flex:1;height:1px;background:var(--sl-color-hairline)"></div><span style="font-size:12px;color:var(--sl-color-gray-3)">›</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><ellipse cx="9" cy="5.5" rx="5.5" ry="2" stroke="#185fa5" stroke-width="1.3" fill="none"/><path d="M3.5 5.5v7c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2v-7" stroke="#185fa5" stroke-width="1.3" fill="none"/><path d="M3.5 9c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2" stroke="#185fa5" stroke-width="1.3" fill="none"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">ClickHouse</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">кластер · 3 ноды<br/>метрики · трейсы · логи</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#E6F1FB;color:#185fa5;border:1px solid #B5D4F4">8123 TCP</span>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;width:24px;display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:2px">
+    <span style="font-size:9px;color:var(--sl-color-gray-3);white-space:nowrap;opacity:.7">SQL</span>
+    <div style="display:flex;align-items:center;width:100%"><div style="flex:1;height:1px;background:var(--sl-color-hairline)"></div><span style="font-size:12px;color:var(--sl-color-gray-3)">›</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#EEEDFE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2.5" stroke="#534AB7" stroke-width="1.3" fill="none"/><path d="M5 8.5h8M5 11h5" stroke="#534AB7" stroke-width="1.2" stroke-linecap="round"/><path d="M5 6h2.5" stroke="#534AB7" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">Интерфейс GMONIT</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">на базе Grafana<br/>дашборды · алерты</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#EEEDFE;color:#534AB7;border:1px solid #CECBF6">HTTPS 443</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;margin-top:8px;width:100%">
+      <div style="width:1px;height:16px;background:var(--sl-color-hairline)"></div>
+      <span style="font-size:10px;color:var(--sl-color-gray-3);opacity:.6;margin:2px 0 5px">уведомления</span>
+      <div style="display:flex;gap:5px">
+        <div style="border-radius:6px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg-sidebar);padding:5px 10px;font-size:11px;font-weight:500;color:var(--sl-color-gray-3)">Email</div>
+        <div style="border-radius:6px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg-sidebar);padding:5px 10px;font-size:11px;font-weight:500;color:var(--sl-color-gray-3)">Webhook</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;width:24px;display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:2px">
+    <span style="font-size:9px;color:var(--sl-color-gray-3);white-space:nowrap;opacity:.7">доступ</span>
+    <div style="display:flex;align-items:center;width:100%"><div style="flex:1;height:1px;background:var(--sl-color-hairline)"></div><span style="font-size:12px;color:var(--sl-color-gray-3)">›</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0">
+    <div style="width:100%;border-radius:10px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg);padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+      <div style="width:40px;height:40px;border-radius:10px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6.5" r="3" stroke="#0F6E56" stroke-width="1.3" fill="none"/><path d="M3 15.5c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:var(--sl-color-white);line-height:1.3">Пользователи</span>
+      <span style="font-size:11px;color:var(--sl-color-gray-3);line-height:1.5">браузер · SSO</span>
+      <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500;background:#E1F5EE;color:#0F6E56;border:1px solid #9FE1CB">HTTPS 443</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;margin-top:8px;width:100%">
+      <div style="width:1px;height:16px;background:var(--sl-color-hairline)"></div>
+      <span style="font-size:10px;color:var(--sl-color-gray-3);opacity:.6;margin:2px 0 5px">авторизация</span>
+      <div style="border-radius:6px;border:1px solid var(--sl-color-hairline);background:var(--sl-color-bg-sidebar);padding:5px 10px;font-size:11px;font-weight:500;color:var(--sl-color-gray-3)">Active Directory</div>
+    </div>
+  </div>
+
+</div>
+
+{/* Компоненты */}
+<div style="font-size: 12px; font-weight: 500; color: var(--sl-color-gray-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1rem;">Компоненты</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 2.5rem;">
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #FAEEDA; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="4.5" cy="9" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><circle cx="13.5" cy="4.5" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><circle cx="13.5" cy="13.5" r="2.5" stroke="#854F0B" stroke-width="1.3" fill="none"/><path d="M7 8l4.5-2.5M7 10l4.5 2.5" stroke="#854F0B" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">Агенты</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Устанавливаются на хосты или инжектируются в приложение. Собирают метрики, трейсы и логи, отправляют по HTTPS на NGINX. Поддерживают Java, Python, Node.js, Go, PHP и другие.</div>
+    </div>
+  </div>
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF3DE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="8" rx="2.5" stroke="#3B6D11" stroke-width="1.3" fill="none"/><circle cx="5.5" cy="9" r="1" fill="#3B6D11"/><path d="M8 9h5.5" stroke="#3B6D11" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">NGINX</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Точка входа для всего трафика агентов. Выполняет SSL termination и балансирует нагрузку между инстансами Collector. Порт 443 TCP.</div>
+    </div>
+  </div>
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF3DE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="#3B6D11" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="6" stroke="#3B6D11" stroke-width="1.3" fill="none"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">Collector</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Масштабируемый компонент приёма данных. Парсит, обогащает и записывает данные в ClickHouse. Использует Redis (6379) для координации между инстансами.</div>
+    </div>
+  </div>
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #E6F1FB; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><ellipse cx="9" cy="5.5" rx="5.5" ry="2" stroke="#185fa5" stroke-width="1.3" fill="none"/><path d="M3.5 5.5v7c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2v-7" stroke="#185fa5" stroke-width="1.3" fill="none"/><path d="M3.5 9c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2" stroke="#185fa5" stroke-width="1.3" fill="none"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">ClickHouse</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Колоночная СУБД для хранения метрик, трейсов и логов. Кластер из 3 нод обеспечивает отказоустойчивость. Хранит данные до 13 месяцев. Порт 8123 TCP.</div>
+    </div>
+  </div>
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEEDFE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2.5" stroke="#534AB7" stroke-width="1.3" fill="none"/><path d="M5 8.5h8M5 11h5" stroke="#534AB7" stroke-width="1.2" stroke-linecap="round"/><path d="M5 6h2.5" stroke="#534AB7" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">Интерфейс GMONIT</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Кастомизированная Grafana. Дашборды, алерты, AI-детекция аномалий. Уведомления через Email и Webhook в любой мессенджер. Авторизация через LDAP/Active Directory.</div>
+    </div>
+  </div>
+
+  <div style="border-radius: 12px; border: 1px solid var(--sl-color-hairline); background: var(--sl-color-bg); padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+    <div style="width: 40px; height: 40px; border-radius: 10px; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#0F6E56" stroke-width="1.3" fill="none"/><path d="M6 8h6M6 11h4" stroke="#0F6E56" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: var(--sl-color-white); margin-bottom: 4px;">PostgreSQL</div>
+      <div style="font-size: 12px; color: var(--sl-color-gray-3); line-height: 1.6;">Хранит конфигурацию Grafana — дашборды, пользователей, настройки алертов. Порт 5432 TCP. Не используется для хранения метрик.</div>
+    </div>
+  </div>
+
+</div>
+
+{/* Порты */}
+<div style="font-size: 12px; font-weight: 500; color: var(--sl-color-gray-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1rem;">Сводная таблица портов</div>
+<div style="border-radius: 10px; border: 1px solid var(--sl-color-hairline); overflow: hidden; margin-bottom: 2rem;">
+  <table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <thead>
+      <tr style="background:var(--sl-color-bg-sidebar);">
+        <th style="padding:10px 16px;text-align:left;font-weight:500;color:var(--sl-color-gray-3);border-bottom:1px solid var(--sl-color-hairline);">Компонент</th>
+        <th style="padding:10px 16px;text-align:left;font-weight:500;color:var(--sl-color-gray-3);border-bottom:1px solid var(--sl-color-hairline);">Порт</th>
+        <th style="padding:10px 16px;text-align:left;font-weight:500;color:var(--sl-color-gray-3);border-bottom:1px solid var(--sl-color-hairline);">Протокол</th>
+        <th style="padding:10px 16px;text-align:left;font-weight:500;color:var(--sl-color-gray-3);border-bottom:1px solid var(--sl-color-hairline);">Назначение</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">NGINX</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:#EAF3DE;color:#3B6D11;border-radius:4px;padding:2px 7px;font-weight:500;">443 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">HTTPS</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Приём трафика от агентов и пользователей</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">Redis</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:#EAF3DE;color:#3B6D11;border-radius:4px;padding:2px 7px;font-weight:500;">6379 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">TCP</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Координация между инстансами Collector</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">ClickHouse</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:#E6F1FB;color:#185fa5;border-radius:4px;padding:2px 7px;font-weight:500;">8123 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">HTTP</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">HTTP-интерфейс ClickHouse</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">PostgreSQL</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:#E1F5EE;color:#0F6E56;border-radius:4px;padding:2px 7px;font-weight:500;">5432 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">TCP</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Конфигурация Grafana</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">Active Directory</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:#EEEDFE;color:#534AB7;border-radius:4px;padding:2px 7px;font-weight:500;">389 / 636 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">LDAP / LDAPS</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Авторизация пользователей</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--sl-color-hairline);">
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">Email</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:var(--sl-color-bg-sidebar);color:var(--sl-color-gray-3);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--sl-color-hairline);">25 / 587 / 465</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">SMTP</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Уведомления об алертах</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 16px;color:var(--sl-color-white);font-weight:500;">Webhook</td>
+        <td style="padding:10px 16px;"><span style="font-size:11px;background:var(--sl-color-bg-sidebar);color:var(--sl-color-gray-3);border-radius:4px;padding:2px 7px;font-weight:500;border:1px solid var(--sl-color-hairline);">443 TCP</span></td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">HTTPS</td>
+        <td style="padding:10px 16px;color:var(--sl-color-gray-3);">Уведомления в мессенджеры</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
