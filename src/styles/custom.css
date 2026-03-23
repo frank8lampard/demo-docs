@@ -80,14 +80,12 @@ site-search button {
     color: #185fa5;
 }
 
-/* Убрать пустую панель TOC если нет заголовков */
-.right-sidebar:empty,
-starlight-toc:empty,
-.toc-wrapper:empty {
-  display: none;
+/* Убрать пустой отступ от TOC */
+.content-panel {
+    display: block !important;
 }
 
-/* Или принудительно убрать TOC на главной странице */
-[data-has-toc="false"] .right-sidebar {
-  display: none;
+.sl-container {
+    max-width: 100% !important;
+    padding-inline-start: 1.5rem !important;
 }
