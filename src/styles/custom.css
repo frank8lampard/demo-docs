@@ -79,3 +79,15 @@ site-search button {
     border-left: 3px solid #378ADD;
     color: #185fa5;
 }
+
+/* Убрать пустую панель TOC если нет заголовков */
+.right-sidebar:empty,
+starlight-toc:empty,
+.toc-wrapper:empty {
+  display: none;
+}
+
+/* Или принудительно убрать TOC на главной странице */
+[data-has-toc="false"] .right-sidebar {
+  display: none;
+}

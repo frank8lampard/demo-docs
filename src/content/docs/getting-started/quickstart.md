@@ -1,7 +1,8 @@
 ---
 title: Добро пожаловать в GMONIT
 sidebar:
-  label: 🚀 Быстрый старт
+  label: 🚀 О Платформе
+  order: 0
 tableOfContents: false
 ---
 
