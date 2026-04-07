@@ -89,3 +89,48 @@ site-search button {
     max-width: 100% !important;
     padding-inline-start: 1.5rem !important;
 }
+/* 1. Делаем крестик нормального размера */
+.search-input button[type="reset"] svg {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+
+/* 2. Убираем пустую иконку документа в результатах */
+#starlight__search .pagefind-ui__result-thumb {
+    display: none !important;
+}
+
+/* Компенсируем отступ, который остался от иконки */
+#starlight__search .pagefind-ui__result-inner {
+    margin-left: 0 !important;
+}
+
+/* Делаем заголовки результатов ярче (фирменный синий) */
+#starlight__search .pagefind-ui__result-title {
+    color: var(--sl-color-accent) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+}
+
+/* Уменьшаем высоту каждой карточки результата */
+#starlight__search .pagefind-ui__result {
+    padding: 12px 0 !important;
+    border-bottom: 1px solid var(--sl-color-hairline-light) !important;
+}
+
+/* Сокращаем текст превью, чтобы не занимал пол-экрана */
+#starlight__search .pagefind-ui__result-excerpt {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    color: var(--sl-color-gray-3) !important;
+    margin-top: 4px !important;
+}
+
+/* Подсветка найденного слова (сделаем её заметнее) */
+#starlight__search mark {
+    background-color: rgba(var(--sl-color-as-rgb-accent), 0.2) !important;
+    color: var(--sl-color-white) !important;
+    font-weight: bold;
+    border-radius: 2px;
+    padding: 0 2px;
+}
