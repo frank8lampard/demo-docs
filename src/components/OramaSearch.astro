@@ -1,20 +1,19 @@
 ---
-// OramaSearch.astro — замена стандартного поиска Starlight на Orama
-// Индекс собирается скриптом scripts/build-search-index.mjs
+// OramaSearch.astro
 ---
 
 <div class="orama-search-wrap">
-  <button id="orama-trigger" type="button" aria-label="Search">
+  <button id="orama-trigger" type="button" aria-label="Поиск">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
-    <span class="orama-trigger-label">\u041f\u043e\u0438\u0441\u043a\u2026</span>
+    <span class="orama-trigger-label">Поиск…</span>
     <kbd>Ctrl+K</kbd>
   </button>
 </div>
 
-<dialog id="orama-dialog" aria-label="\u041f\u043e\u0438\u0441\u043a">
+<dialog id="orama-dialog" aria-label="Поиск">
   <div class="orama-modal">
     <div class="orama-input-row">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -23,12 +22,12 @@
         <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input id="orama-input" type="search" autocomplete="off" spellcheck="false"
-             placeholder="\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u0438\u2026" />
-      <button id="orama-close" type="button" aria-label="\u0417\u0430\u043a\u0440\u044b\u0442\u044c">Esc</button>
+             placeholder="Поиск по документации…" />
+      <button id="orama-close" type="button" aria-label="Закрыть">Esc</button>
     </div>
     <div id="orama-results" role="listbox"></div>
     <div id="orama-empty" class="orama-empty" hidden>
-      \u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e
+      Ничего не найдено
     </div>
   </div>
 </dialog>
@@ -69,8 +68,13 @@
     font-family: inherit;
   }
 
-  /* Диалог */
+  /* dialog закрыт по умолчанию */
   #orama-dialog {
+    display: none;
+  }
+
+  /* dialog открыт */
+  #orama-dialog[open] {
     position: fixed;
     inset: 0;
     width: 100%;
@@ -80,10 +84,11 @@
     background: rgba(0,0,0,0.6);
     border: none;
     padding: 0;
+    padding-top: 80px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 80px;
+    z-index: 9999;
   }
   #orama-dialog::backdrop { display: none; }
 
@@ -127,7 +132,6 @@
     flex-shrink: 0;
   }
 
-  /* Результаты */
   #orama-results { max-height: 420px; overflow-y: auto; }
 
   .orama-result {
@@ -201,21 +205,21 @@
     return db
   }
 
-  const dialog  = document.getElementById('orama-dialog')
-  const trigger = document.getElementById('orama-trigger')
-  const input   = document.getElementById('orama-input')
-  const results = document.getElementById('orama-results')
-  const empty   = document.getElementById('orama-empty')
+  const dialog   = document.getElementById('orama-dialog')
+  const trigger  = document.getElementById('orama-trigger')
+  const input    = document.getElementById('orama-input')
+  const results  = document.getElementById('orama-results')
+  const empty    = document.getElementById('orama-empty')
   const closeBtn = document.getElementById('orama-close')
 
   function openDialog() {
-    dialog.showModal ? dialog.showModal() : (dialog.open = true)
+    dialog.showModal()
     input.focus()
     loadDb()
   }
 
   function closeDialog() {
-    dialog.close ? dialog.close() : (dialog.open = false)
+    dialog.close()
     input.value = ''
     results.innerHTML = ''
     empty.hidden = true
@@ -233,13 +237,11 @@
       e.preventDefault()
       openDialog()
     }
-    if (e.key === 'Escape' && (dialog.open)) {
-      closeDialog()
-    }
+    if (e.key === 'Escape' && dialog.open) closeDialog()
   })
 
   function highlight(text, term) {
-    if (!term) return text
+    if (\!term) return text
     const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>')
   }
@@ -247,11 +249,7 @@
   function renderResults(hits, term) {
     results.innerHTML = ''
     empty.hidden = true
-
-    if (hits.length === 0) {
-      empty.hidden = false
-      return
-    }
+    if (hits.length === 0) { empty.hidden = false; return }
 
     hits.forEach(function(hit) {
       const doc = hit.document
@@ -259,17 +257,14 @@
       a.className = 'orama-result'
       a.href = doc.url
       a.setAttribute('role', 'option')
-
       const excerpt = doc.content
-        ? highlight(doc.content.slice(0, 140) + '\u2026', term)
+        ? highlight(doc.content.slice(0, 140) + '…', term)
         : ''
-
       a.innerHTML =
         '<div class="orama-result-section">' + doc.section + '</div>' +
         '<div class="orama-result-title">' + highlight(doc.title, term) + '</div>' +
         '<div class="orama-result-excerpt">' + excerpt + '</div>'
-
-      a.addEventListener('click', function() { closeDialog() })
+      a.addEventListener('click', closeDialog)
       results.appendChild(a)
     })
   }
@@ -278,14 +273,10 @@
   input.addEventListener('input', function() {
     clearTimeout(debounceTimer)
     const term = input.value.trim()
-    if (!term) {
-      results.innerHTML = ''
-      empty.hidden = true
-      return
-    }
+    if (\!term) { results.innerHTML = ''; empty.hidden = true; return }
     debounceTimer = setTimeout(async function() {
       const database = await loadDb()
-      if (!database) return
+      if (\!database) return
       const r = await search(database, { term, tolerance: 1, limit: 8 })
       renderResults(r.hits, term)
     }, 150)
