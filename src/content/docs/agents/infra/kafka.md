@@ -3,4 +3,4 @@ title: Kafka
 description: ''
 ---
 
-Kafka
+Раздел в разработке.

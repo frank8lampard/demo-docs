@@ -3,4 +3,4 @@ title: MySQL
 description: ''
 ---
 
-MySQL
+Раздел в разработке.

@@ -37,7 +37,8 @@ site-search {
     width: 100% !important;
 }
 
-site-search button {
+/* Только кнопка-триггер (открыть поиск), не трогаем кнопки внутри модала */
+site-search > button {
     width: 100% !important;
     max-width: 500px !important;
 }
@@ -46,6 +47,17 @@ site-search button {
     site-search {
         max-width: 100% !important;
     }
+}
+
+/* Крестик очистки поля (Pagefind) — компактный */
+.pagefind-ui__search-clear {
+    width: 2rem !important;
+    height: 2rem !important;
+    padding: 0.35rem !important;
+    opacity: 0.5;
+}
+.pagefind-ui__search-clear:hover {
+    opacity: 1;
 }
 
 /* Хлебные крошки — заголовок страницы */
@@ -89,11 +101,7 @@ site-search button {
     max-width: 100% !important;
     padding-inline-start: 1.5rem !important;
 }
-/* 1. Делаем крестик нормального размера */
-.search-input button[type="reset"] svg {
-    width: 1rem !important;
-    height: 1rem !important;
-}
+/* (удалён нерабочий селектор для крестика — заменён выше на .pagefind-ui__search-clear) */
 
 /* 2. Убираем пустую иконку документа в результатах */
 #starlight__search .pagefind-ui__result-thumb {

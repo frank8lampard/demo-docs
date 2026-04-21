@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docsearch",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5173", "--directory", "C:\\Users\\Имя\\Documents\\DS -- поиск по документам"],
+      "port": 5173
+    }
+  ]
+}

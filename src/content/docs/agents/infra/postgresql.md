@@ -3,4 +3,4 @@ title: PostgreSQL
 description: ''
 ---
 
-PostgreSQL
+Раздел в разработке.
