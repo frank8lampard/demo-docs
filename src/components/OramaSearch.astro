@@ -32,7 +32,7 @@
   </div>
 </dialog>
 
-<style>
+<style is:global>
   .orama-search-wrap {
     flex: 1;
     display: flex;
@@ -287,7 +287,7 @@
     debounceTimer = setTimeout(async function() {
       const database = await loadDb()
       if (!database) return
-      const r = await search(database, { term, tolerance: 1, limit: 8 })
+      const r = await search(database, { term, tolerance: 1, prefix: true, limit: 8 })
       renderResults(r.hits, term)
     }, 150)
   })
