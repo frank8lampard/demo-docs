@@ -1,9 +1,6 @@
 import { readFileSync, readdirSync, writeFileSync, statSync, mkdirSync } from 'fs'
 import { join, relative, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { create, insert } from '@orama/orama'
-import { stemmer } from '@orama/stemmers/russian'
-import { persist } from '@orama/plugin-data-persistence'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -63,16 +60,9 @@ function walkDir(dir, files) {
   return files
 }
 
-async function main() {
-  const db = await create({
-    schema: { title: 'string', content: 'string', url: 'string', section: 'string' },
-    components: {
-      tokenizer: { language: 'russian', stemming: true, stemmerSkipProperties: ['url'], stemmer },
-    },
-  })
-
+function main() {
   const files = walkDir(DOCS_DIR)
-  let count = 0
+  const documents = []
 
   for (const file of files) {
     const raw = readFileSync(file, 'utf-8')
@@ -81,19 +71,17 @@ async function main() {
     const slug = relPath.replace(/\.mdx?$/, '').replace(/\/index$/, '')
     const url = '/demo-docs/' + slug + '/'
 
-    await insert(db, {
+    documents.push({
       title:   frontmatter.title || slug,
       content: stripMarkdown(body).slice(0, 2000),
       url,
       section: getSection(relPath),
     })
-    count++
   }
 
-  const json = await persist(db, 'json')
   mkdirSync(join(ROOT, 'public'), { recursive: true })
-  writeFileSync(OUTPUT, json, 'utf-8')
-  console.log('Orama: indexed ' + count + ' pages -> public/search-index.json')
+  writeFileSync(OUTPUT, JSON.stringify({ documents }), 'utf-8')
+  console.log('Orama: indexed ' + documents.length + ' pages -> public/search-index.json')
 }
 
-main().catch(function(err) { console.error(err); process.exit(1) })
+main()
