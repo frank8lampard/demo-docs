@@ -241,7 +241,7 @@
   })
 
   function highlight(text, term) {
-    if (\!term) return text
+    if (!term) return text
     const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>')
   }
@@ -273,10 +273,10 @@
   input.addEventListener('input', function() {
     clearTimeout(debounceTimer)
     const term = input.value.trim()
-    if (\!term) { results.innerHTML = ''; empty.hidden = true; return }
+    if (!term) { results.innerHTML = ''; empty.hidden = true; return }
     debounceTimer = setTimeout(async function() {
       const database = await loadDb()
-      if (\!database) return
+      if (!database) return
       const r = await search(database, { term, tolerance: 1, limit: 8 })
       renderResults(r.hits, term)
     }, 150)
