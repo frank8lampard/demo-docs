@@ -189,7 +189,7 @@
   import { create, insertMultiple, search } from '@orama/orama'
   import { stemmer } from '@orama/stemmers/russian'
 
-  const INDEX_URL = import.meta.env.BASE_URL + 'search-index.json'
+  const INDEX_URL = import.meta.env.BASE_URL.replace(/\/$/, '') + '/search-index.json'
 
   let db = null
   let dbLoading = false
@@ -198,15 +198,20 @@
     if (db) return db
     if (dbLoading) return null
     dbLoading = true
-    const res = await fetch(INDEX_URL)
-    const data = await res.json()
-    db = await create({
-      schema: { title: 'string', content: 'string', url: 'string', section: 'string' },
-      components: {
-        tokenizer: { language: 'russian', stemming: true, stemmerSkipProperties: ['url'], stemmer },
-      },
-    })
-    await insertMultiple(db, data.documents)
+    try {
+      const res = await fetch(INDEX_URL)
+      const data = await res.json()
+      db = await create({
+        schema: { title: 'string', content: 'string', url: 'string', section: 'string' },
+        components: {
+          tokenizer: { language: 'russian', stemming: true, stemmerSkipProperties: ['url'], stemmer },
+        },
+      })
+      await insertMultiple(db, data.documents)
+    } catch (e) {
+      console.error('Orama: failed to load search index', e)
+      dbLoading = false
+    }
     return db
   }
 
