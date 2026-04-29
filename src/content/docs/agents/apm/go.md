@@ -11,6 +11,7 @@ description: "Инструкция по интеграции APM-агента в
 ### 1. **Загрузка и установка агента**
 
 Установите пакет агента с помощью команды `go get`:
+Тест
 
 ```bash
 go get github.com/newrelic/go-agent/v3/newrelic
